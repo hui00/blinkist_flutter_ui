@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'cardModel.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,251 +28,286 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 14.0,
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                ersteCard(),
-                ersterText(),
-              ],
-            ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ersteCard(),
+              kategorienFuerCards(
+                  "Empfehlungen für dich", "Diese Titel könnten dir gefallen"),
+              SizedBox(
+                height: 8.0,
+              ),
+              SizedBox(
+                height: 240.0,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: myCard(5),
+                ),
+              ),
+              kategorienFuerCards(
+                  "Beliebt", "Die populärten Titel bei Blinkist"),
+              SizedBox(
+                height: 8.0,
+              ),
+              SizedBox(
+                height: 240.0,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: myCard(5),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Card ersteCard() => Card(
-        // shape: BeveledRectangleBorder(
-        //     borderRadius: BorderRadius.only(
-        //   bottomLeft: Radius.circular(4.0),
-        //   bottomRight: Radius.circular(4.0),
-        // )),
-        // clipBehavior: Clip.hardEdge,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        margin: EdgeInsets.only(top: 10.0),
-        elevation: 0.0,
-        child: Container(
-          height: 330.0,
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              ListTile(
-                title: Text(
-                  "Free Daily",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17.0,
+  Widget ersteCard() => Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 24.0,
+        ),
+        child: Card(
+          // shape: BeveledRectangleBorder(
+          //     borderRadius: BorderRadius.only(
+          //   bottomLeft: Radius.circular(4.0),
+          //   bottomRight: Radius.circular(4.0),
+          // )),
+          // clipBehavior: Clip.hardEdge,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          margin: EdgeInsets.only(top: 10.0),
+          elevation: 0.0,
+          child: Container(
+            height: 330.0,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    "Free Daily",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17.0,
+                    ),
+                  ),
+                  subtitle: Text(
+                    "Dein kostenloser Titel des Tages",
+                    style: TextStyle(
+                      fontSize: 13.0,
+                    ),
                   ),
                 ),
-                subtitle: Text(
-                  "Dein kostenloser Titel des Tages",
-                  style: TextStyle(
-                    fontSize: 13.0,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  children: <Widget>[
-                    Flexible(
-                      flex: 5,
-                      child: Container(
-                        width: double.infinity,
-                        child: Image.asset(
-                          'assets/second.jpg',
-                          fit: BoxFit.cover,
+                Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      Flexible(
+                        flex: 5,
+                        child: Container(
+                          width: double.infinity,
+                          child: Image.asset(
+                            "assets/second.jpg",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    Flexible(
-                      flex: 4,
-                      child: Container(
-                        color: Colors.black87,
-                        width: double.infinity,
-                        padding: EdgeInsets.all(8.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "Allen Carr",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 4.0,
-                              ),
-                              Text(
-                                "Endlich Nichtraucher",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              SizedBox(
-                                width: 250.0,
-                                child: Text(
-                                  "Der einfache Weg, mit dem Rauchen Schluss  zu machen",
+                      Flexible(
+                        flex: 4,
+                        child: Container(
+                          color: Colors.black87,
+                          width: double.infinity,
+                          padding: EdgeInsets.all(8.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Allen Carr",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
                                   ),
                                 ),
-                              ),
-                            ],
+                                SizedBox(
+                                  height: 4.0,
+                                ),
+                                Text(
+                                  "Endlich Nichtraucher",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 8.0,
+                                ),
+                                SizedBox(
+                                  width: 250.0,
+                                  child: Text(
+                                    "Der einfache Weg, mit dem Rauchen Schluss  zu machen",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
-              )
-              // Image.asset(name),
-            ],
+                      )
+                    ],
+                  ),
+                )
+                // Image.asset(name),
+              ],
+            ),
           ),
         ),
       );
 
-  Column ersterText() => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 18.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                "Empfehlungen für dich",
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                height: 32.0,
-                child: MaterialButton(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  child: Text(
-                    "Freischalten",
-                    style: TextStyle(color: Colors.green),
+  Padding kategorienFuerCards(String title, String subtitle) => Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 24.0,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 18.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                  onPressed: () {},
                 ),
-              )
-            ],
-          ),
-          Text("Diese Titel könnten dir gefallen")
-        ],
+                SizedBox(
+                  height: 32.0,
+                  child: MaterialButton(
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    child: Text(
+                      "Freischalten",
+                      style: TextStyle(color: Colors.greenAccent),
+                    ),
+                    onPressed: () {},
+                  ),
+                )
+              ],
+            ),
+            Text(subtitle)
+          ],
+        ),
       );
 
-  Card listCard() => Card(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        margin: EdgeInsets.only(top: 10.0),
-        elevation: 12.0,
+  myCard(int count) {
+    List<Widget> cards = List.generate(
+      count,
+      (index) => Card(
+        elevation: 2.0,
         child: Container(
-          height: 230.0,
           width: 140.0,
+          height: double.infinity,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              ListTile(
-                title: Text(
-                  "Free Daily",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17.0,
-                  ),
-                ),
-                subtitle: Text(
-                  "Dein kostenloser Titel des Tages",
-                  style: TextStyle(
-                    fontSize: 13.0,
-                  ),
+              Expanded(
+                flex: 1,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    Image.asset(
+                      CardModel.empfehlungCards[index].image,
+                      fit: BoxFit.cover,
+                    ),
+                    Positioned(
+                      left: 0.0,
+                      bottom: 0.0,
+                      child: Container(
+                        padding: EdgeInsets.all(2.0),
+                        color: Colors.lime,
+                        // width: 140,
+
+                        child: Text(
+                          CardModel
+                                      .empfehlungCards[index].author
+                                      .toString()
+                                      .length >=
+                                  17
+                              ? CardModel.empfehlungCards[index].author
+                                      .toString()
+                                      .substring(0, 17) +
+                                  "..."
+                              : CardModel.empfehlungCards[index].author,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
               Expanded(
+                flex: 1,
                 child: Column(
                   children: <Widget>[
-                    Flexible(
-                      flex: 5,
-                      child: Container(
-                        width: double.infinity,
-                        child: Image.asset(
-                          'assets/second.jpg',
-                          fit: BoxFit.cover,
-                        ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Expanded(
+                            child: Text(
+                              CardModel.empfehlungCards[index].title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 25.0,
+                          ),
+                          Icon(
+                            Icons.lock,
+                            color: Colors.greenAccent,
+                          )
+                        ],
                       ),
                     ),
                     Flexible(
-                      flex: 4,
-                      child: Container(
-                        color: Colors.black87,
-                        width: double.infinity,
-                        padding: EdgeInsets.all(8.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "Allen Carr",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 4.0,
-                              ),
-                              Text(
-                                "Endlich Nichtraucher",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              SizedBox(
-                                width: 250.0,
-                                child: Text(
-                                  "Der einfache Weg, mit dem Rauchen Schluss  zu machen",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          CardModel.empfehlungCards[index].subtitle,
+                          style: TextStyle(fontSize: 12.0),
                         ),
                       ),
                     )
                   ],
                 ),
               )
-              // Image.asset(name),
             ],
           ),
+
+          // index.toString(),
         ),
-      );
+      ),
+    );
+    // List<Widget> huiii = [Text("hi")];
+    // Widget hua = ListView();
+
+    print(cards.length);
+    return cards;
+  }
 }

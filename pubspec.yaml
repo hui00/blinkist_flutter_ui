@@ -42,6 +42,16 @@ flutter:
   assets:
     - assets/first.jpg
     - assets/second.jpg
+    - assets/donaldsull.jpg
+    - assets/dorismaertin.jpg
+    - assets/hansotto.jpg
+    - assets/ichirokishimi.jpg
+    - assets/tobiasbeck.jpg
+    - assets/jessicabraun.jpg
+    - assets/estherperel.jpg
+    - assets/ulrichschnabel.jpg
+    - assets/stanleyrosenberg.jpg
+    - assets/michaelzimmermann.jpg
   #  - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

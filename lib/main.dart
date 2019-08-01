@@ -26,137 +26,146 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ersteCard(),
-              cardUeberschrift(Kategorie.empfehlung),
-              myCard(
-                5,
-                Kategorie.empfehlung,
-              ),
-              cardUeberschrift(Kategorie.beliebt),
-              myCard(
-                5,
-                Kategorie.beliebt,
-              ),
-              cardUeberschrift(Kategorie.neu),
-              myCard(
-                5,
-                Kategorie.empfehlung,
-              ),
-            ],
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        actions: <Widget>[
+          Icon(
+            Icons.settings,
+            color: Colors.grey,
           ),
+          SizedBox(
+            width: 20.0,
+          ),
+        ],
+      ),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            titleStart(),
+            cardUeberschrift(Kategorie.daily),
+            ersteCard(),
+            cardUeberschrift(Kategorie.empfehlung),
+            myCard(
+              5,
+              Kategorie.empfehlung,
+            ),
+            cardUeberschrift(Kategorie.beliebt),
+            myCard(
+              5,
+              Kategorie.beliebt,
+            ),
+            cardUeberschrift(Kategorie.neu),
+            myCard(
+              5,
+              Kategorie.empfehlung,
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget titleStart() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Start",
+            style: TextStyle(
+              fontSize: 26.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Container(
+            color: Colors.red,
+            height: 3.0,
+            width: 30.0,
+          )
+        ],
+        // ),
       ),
     );
   }
 
   Widget ersteCard() => Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: 24.0,
+          horizontal: 16.0,
         ),
         child: Card(
-          // shape: BeveledRectangleBorder(
-          //     borderRadius: BorderRadius.only(
-          //   bottomLeft: Radius.circular(4.0),
-          //   bottomRight: Radius.circular(4.0),
-          // )),
-          // clipBehavior: Clip.hardEdge,
           clipBehavior: Clip.antiAliasWithSaveLayer,
           margin: EdgeInsets.only(top: 10.0),
           elevation: 0.0,
           child: Container(
-            height: 330.0,
+            height: 265.0,
             width: double.infinity,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                ListTile(
-                  title: Text(
-                    "Free Daily",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17.0,
-                    ),
-                  ),
-                  subtitle: Text(
-                    "Dein kostenloser Titel des Tages",
-                    style: TextStyle(
-                      fontSize: 13.0,
+                Flexible(
+                  flex: 5,
+                  child: Container(
+                    width: double.infinity,
+                    child: Image.asset(
+                      "assets/second.jpg",
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Column(
-                    children: <Widget>[
-                      Flexible(
-                        flex: 5,
-                        child: Container(
-                          width: double.infinity,
-                          child: Image.asset(
-                            "assets/second.jpg",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 4,
-                        child: Container(
-                          color: Colors.black87,
-                          width: double.infinity,
-                          padding: EdgeInsets.all(8.0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Allen Carr",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 4.0,
-                                ),
-                                Text(
-                                  "Endlich Nichtraucher",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 8.0,
-                                ),
-                                SizedBox(
-                                  width: 250.0,
-                                  child: Text(
-                                    "Der einfache Weg, mit dem Rauchen Schluss  zu machen",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                Flexible(
+                  flex: 4,
+                  child: Container(
+                    color: Colors.black87,
+                    width: double.infinity,
+                    padding: EdgeInsets.all(8.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "Allen Carr",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                          SizedBox(
+                            height: 4.0,
+                          ),
+                          Text(
+                            "Endlich Nichtraucher",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8.0,
+                          ),
+                          SizedBox(
+                            width: 250.0,
+                            child: Text(
+                              "Der einfache Weg, mit dem Rauchen Schluss  zu machen",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 )
-                // Image.asset(name),
               ],
             ),
+            // Image.asset(name),
           ),
         ),
       );
@@ -165,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
     TitleCardModel card = TitleCardModel.titleCards(kata);
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: 24.0,
+        horizontal: 16.0,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -184,18 +193,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                height: 27.0,
-                child: MaterialButton(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  child: Text(
-                    "Freischalten",
-                    style: TextStyle(color: Colors.greenAccent),
-                  ),
-                  onPressed: () {},
-                ),
-              )
+              kata == Kategorie.daily
+                  ? SizedBox(
+                      height: 27.0,
+                    )
+                  : SizedBox(
+                      height: 27.0,
+                      child: MaterialButton(
+                        highlightColor: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        child: Text(
+                          "Freischalten",
+                          style: TextStyle(color: Colors.greenAccent),
+                        ),
+                        onPressed: () {},
+                      ),
+                    )
             ],
           ),
           Text(
@@ -307,7 +320,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     return Padding(
-      padding: const EdgeInsets.only(top: 5.0),
+      padding: const EdgeInsets.only(top: 7.0, left: 12.0),
       child: SizedBox(
         height: 240.0,
         child: ListView(

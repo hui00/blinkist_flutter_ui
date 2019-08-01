@@ -1,4 +1,4 @@
-enum Kategorie { empfehlung, beliebt, neu }
+enum Kategorie { daily, empfehlung, beliebt, neu }
 
 class CardModel {
   final String author;
@@ -105,6 +105,14 @@ class TitleCardModel {
 
   static titleCards(Kategorie kata) {
     switch (kata) {
+      case Kategorie.daily:
+        {
+          return TitleCardModel(
+            title: "Free Daily",
+            subtitle: "Dein kostenliser Titel des Tages",
+          );
+        }
+        break;
       case Kategorie.empfehlung:
         {
           return TitleCardModel(

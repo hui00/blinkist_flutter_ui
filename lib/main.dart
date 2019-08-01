@@ -42,7 +42,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 240.0,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: myCard(5),
+                  children: myCard(
+                    5,
+                    Kategorie.empfehlung,
+                  ),
                 ),
               ),
               kategorienFuerCards(
@@ -54,7 +57,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 240.0,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: myCard(5),
+                  children: myCard(
+                    5,
+                    Kategorie.beliebt,
+                  ),
                 ),
               ),
             ],
@@ -210,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
 
-  myCard(int count) {
+  myCard(int count, Kategorie kata) {
     List<Widget> cards = List.generate(
       count,
       (index) => Card(
@@ -226,7 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   fit: StackFit.expand,
                   children: <Widget>[
                     Image.asset(
-                      CardModel.empfehlungCards[index].image,
+                      CardModel.loadCards(kata)[index].image,
                       fit: BoxFit.cover,
                     ),
                     Positioned(
@@ -238,16 +244,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         // width: 140,
 
                         child: Text(
-                          CardModel
-                                      .empfehlungCards[index].author
+                          CardModel.loadCards(
+                                          kata)[index]
+                                      .author
                                       .toString()
                                       .length >=
                                   17
-                              ? CardModel.empfehlungCards[index].author
+                              ? CardModel.loadCards(kata)[index]
+                                      .author
                                       .toString()
                                       .substring(0, 17) +
                                   "..."
-                              : CardModel.empfehlungCards[index].author,
+                              : CardModel.loadCards(kata)[index].author,
                         ),
                       ),
                     )
@@ -266,7 +274,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: <Widget>[
                           Expanded(
                             child: Text(
-                              CardModel.empfehlungCards[index].title,
+                              CardModel.loadCards(kata)[index].title,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -289,7 +297,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
-                          CardModel.empfehlungCards[index].subtitle,
+                          CardModel.loadCards(kata)[index].subtitle,
                           style: TextStyle(fontSize: 12.0),
                         ),
                       ),

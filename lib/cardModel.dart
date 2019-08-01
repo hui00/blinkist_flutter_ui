@@ -1,3 +1,5 @@
+enum Kategorie { empfehlung, beliebt, neu }
+
 class CardModel {
   final String author;
   final String title;
@@ -92,4 +94,42 @@ class CardModel {
   });
 }
 
-enum Kategorie { empfehlung, beliebt }
+class TitleCardModel {
+  String title;
+  String subtitle;
+
+  TitleCardModel({
+    this.title,
+    this.subtitle,
+  });
+
+  static titleCards(Kategorie kata) {
+    switch (kata) {
+      case Kategorie.empfehlung:
+        {
+          return TitleCardModel(
+            title: "Empfehlungen für dich",
+            subtitle: "Diese Titel könnten dir gefallen",
+          );
+        }
+        break;
+      case Kategorie.beliebt:
+        {
+          return TitleCardModel(
+            title: "Beliebt",
+            subtitle: "Die populärsten Titel bei Blinkest",
+          );
+        }
+        break;
+
+      case Kategorie.neu:
+        {
+          return TitleCardModel(
+            title: "Neu bei Blinkist",
+            subtitle: "Frisch eingetroffen diese Woche",
+          );
+        }
+        break;
+    }
+  }
+}

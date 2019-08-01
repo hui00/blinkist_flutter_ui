@@ -33,35 +33,20 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               ersteCard(),
-              kategorienFuerCards(
-                  "Empfehlungen für dich", "Diese Titel könnten dir gefallen"),
-              SizedBox(
-                height: 8.0,
+              cardUeberschrift(Kategorie.empfehlung),
+              myCard(
+                5,
+                Kategorie.empfehlung,
               ),
-              SizedBox(
-                height: 240.0,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: myCard(
-                    5,
-                    Kategorie.empfehlung,
-                  ),
-                ),
+              cardUeberschrift(Kategorie.beliebt),
+              myCard(
+                5,
+                Kategorie.beliebt,
               ),
-              kategorienFuerCards(
-                  "Beliebt", "Die populärten Titel bei Blinkist"),
-              SizedBox(
-                height: 8.0,
-              ),
-              SizedBox(
-                height: 240.0,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: myCard(
-                    5,
-                    Kategorie.beliebt,
-                  ),
-                ),
+              cardUeberschrift(Kategorie.neu),
+              myCard(
+                5,
+                Kategorie.empfehlung,
               ),
             ],
           ),
@@ -176,45 +161,53 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
 
-  Padding kategorienFuerCards(String title, String subtitle) => Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 24.0,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(
-              height: 18.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+  Padding cardUeberschrift(Kategorie kata) {
+    TitleCardModel card = TitleCardModel.titleCards(kata);
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 24.0,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(
+            height: 18.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                card.title,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                SizedBox(
-                  height: 32.0,
-                  child: MaterialButton(
-                    highlightColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    child: Text(
-                      "Freischalten",
-                      style: TextStyle(color: Colors.greenAccent),
-                    ),
-                    onPressed: () {},
+              ),
+              SizedBox(
+                height: 27.0,
+                child: MaterialButton(
+                  highlightColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  child: Text(
+                    "Freischalten",
+                    style: TextStyle(color: Colors.greenAccent),
                   ),
-                )
-              ],
+                  onPressed: () {},
+                ),
+              )
+            ],
+          ),
+          Text(
+            card.subtitle,
+            style: TextStyle(
+              fontSize: 11,
             ),
-            Text(subtitle)
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
+  }
 
   myCard(int count, Kategorie kata) {
     List<Widget> cards = List.generate(
@@ -312,10 +305,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-    // List<Widget> huiii = [Text("hi")];
-    // Widget hua = ListView();
 
-    print(cards.length);
-    return cards;
+    return Padding(
+      padding: const EdgeInsets.only(top: 5.0),
+      child: SizedBox(
+        height: 240.0,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: cards,
+        ),
+      ),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:blinkist/startPage.dart';
+import 'package:blinkist/suchenPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'cardModel.dart';
@@ -125,23 +126,26 @@ class MyHomePage extends StatefulWidget {
     );
   }
 
-  static Widget titleStart() {
+  static Widget titleStart(String title) {
     return Padding(
       padding: const EdgeInsets.only(left: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "Start",
+            title,
             style: TextStyle(
               fontSize: 26.0,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Container(
-            color: Colors.red,
-            height: 3.0,
-            width: 30.0,
+          Padding(
+            padding: const EdgeInsets.only(top: 6.0),
+            child: Container(
+              color: Colors.red,
+              height: 3.0,
+              width: 30.0,
+            ),
           )
         ],
         // ),
@@ -308,7 +312,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            StartPage(),
+            SuchenPage(),
           ],
         ),
       ),

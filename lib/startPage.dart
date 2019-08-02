@@ -16,7 +16,7 @@ class _StartPageState extends State<StartPage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyHomePage.titleStart(),
+          MyHomePage.titleStart("Start"),
           MyHomePage.cardUeberschrift(Kategorie.daily),
           MyHomePage.ersteCard(),
           MyHomePage.cardUeberschrift(Kategorie.empfehlung),

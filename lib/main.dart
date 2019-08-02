@@ -1,3 +1,4 @@
+import 'package:blinkist/startPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'cardModel.dart';
@@ -15,214 +16,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({
-    Key key,
-  }) : super(key: key);
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        actions: <Widget>[
-          Icon(
-            Icons.settings,
-            color: Colors.grey,
-          ),
-          SizedBox(
-            width: 20.0,
-          ),
-        ],
-      ),
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            titleStart(),
-            cardUeberschrift(Kategorie.daily),
-            ersteCard(),
-            cardUeberschrift(Kategorie.empfehlung),
-            myCard(
-              5,
-              Kategorie.empfehlung,
-            ),
-            cardUeberschrift(Kategorie.beliebt),
-            myCard(
-              5,
-              Kategorie.beliebt,
-            ),
-            cardUeberschrift(Kategorie.neu),
-            myCard(
-              5,
-              Kategorie.empfehlung,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget titleStart() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            "Start",
-            style: TextStyle(
-              fontSize: 26.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Container(
-            color: Colors.red,
-            height: 3.0,
-            width: 30.0,
-          )
-        ],
-        // ),
-      ),
-    );
-  }
-
-  Widget ersteCard() => Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16.0,
-        ),
-        child: Card(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          margin: EdgeInsets.only(top: 10.0),
-          elevation: 0.0,
-          child: Container(
-            height: 265.0,
-            width: double.infinity,
-            child: Column(
-              children: <Widget>[
-                Flexible(
-                  flex: 5,
-                  child: Container(
-                    width: double.infinity,
-                    child: Image.asset(
-                      "assets/second.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Flexible(
-                  flex: 4,
-                  child: Container(
-                    color: Colors.black87,
-                    width: double.infinity,
-                    padding: EdgeInsets.all(8.0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "Allen Carr",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4.0,
-                          ),
-                          Text(
-                            "Endlich Nichtraucher",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8.0,
-                          ),
-                          SizedBox(
-                            width: 250.0,
-                            child: Text(
-                              "Der einfache Weg, mit dem Rauchen Schluss  zu machen",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            // Image.asset(name),
-          ),
-        ),
-      );
-
-  Padding cardUeberschrift(Kategorie kata) {
-    TitleCardModel card = TitleCardModel.titleCards(kata);
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.0,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 18.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                card.title,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              kata == Kategorie.daily
-                  ? SizedBox(
-                      height: 27.0,
-                    )
-                  : SizedBox(
-                      height: 27.0,
-                      child: MaterialButton(
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        child: Text(
-                          "Freischalten",
-                          style: TextStyle(color: Colors.greenAccent),
-                        ),
-                        onPressed: () {},
-                      ),
-                    )
-            ],
-          ),
-          Text(
-            card.subtitle,
-            style: TextStyle(
-              fontSize: 11,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  myCard(int count, Kategorie kata) {
+  static myCard(int count, Kategorie kata) {
     List<Widget> cards = List.generate(
       count,
       (index) => Card(
@@ -327,6 +121,218 @@ class _MyHomePageState extends State<MyHomePage> {
           scrollDirection: Axis.horizontal,
           children: cards,
         ),
+      ),
+    );
+  }
+
+  static Widget titleStart() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Start",
+            style: TextStyle(
+              fontSize: 26.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Container(
+            color: Colors.red,
+            height: 3.0,
+            width: 30.0,
+          )
+        ],
+        // ),
+      ),
+    );
+  }
+
+  static Widget ersteCard() => Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 16.0,
+        ),
+        child: Card(
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          margin: EdgeInsets.only(top: 10.0),
+          elevation: 0.0,
+          child: Container(
+            height: 265.0,
+            width: double.infinity,
+            child: Column(
+              children: <Widget>[
+                Flexible(
+                  flex: 5,
+                  child: Container(
+                    width: double.infinity,
+                    child: Image.asset(
+                      "assets/second.jpg",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Flexible(
+                  flex: 4,
+                  child: Container(
+                    color: Colors.black87,
+                    width: double.infinity,
+                    padding: EdgeInsets.all(8.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "Allen Carr",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 4.0,
+                          ),
+                          Text(
+                            "Endlich Nichtraucher",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8.0,
+                          ),
+                          SizedBox(
+                            width: 250.0,
+                            child: Text(
+                              "Der einfache Weg, mit dem Rauchen Schluss  zu machen",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            // Image.asset(name),
+          ),
+        ),
+      );
+
+  static Padding cardUeberschrift(Kategorie kata) {
+    TitleCardModel card = TitleCardModel.titleCards(kata);
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 16.0,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(
+            height: 18.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                card.title,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              kata == Kategorie.daily
+                  ? SizedBox(
+                      height: 27.0,
+                    )
+                  : SizedBox(
+                      height: 27.0,
+                      child: MaterialButton(
+                        highlightColor: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        child: Text(
+                          "Freischalten",
+                          style: TextStyle(color: Colors.greenAccent),
+                        ),
+                        onPressed: () {},
+                      ),
+                    )
+            ],
+          ),
+          Text(
+            card.subtitle,
+            style: TextStyle(
+              fontSize: 11,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  MyHomePage({
+    Key key,
+  }) : super(key: key);
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        actions: <Widget>[
+          Icon(
+            Icons.settings,
+            color: Colors.grey,
+          ),
+          SizedBox(
+            width: 20.0,
+          ),
+        ],
+      ),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            StartPage(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black,
+        iconSize: 26.0,
+        elevation: 0.0,
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.greenAccent,
+        currentIndex: 0,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('start'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            title: Text('Suchen'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark),
+            title: Text('Meine Title'),
+          ),
+        ],
       ),
     );
   }

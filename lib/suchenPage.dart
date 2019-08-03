@@ -103,6 +103,48 @@ class SuchenPage extends StatefulWidget {
     );
   }
 
+  static Widget leseleistenCard() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 7.0, left: 12.0),
+      child: Card(
+        color: Colors.white,
+        child: SizedBox(
+          height: 260.0,
+          width: 180.0,
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    ClipPath(
+                      clipper: MyClipper(),
+                      child: Image.asset(
+                        "assets/second.jpg",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Icon(Icons.ac_unit),
+                    )
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  color: Colors.amber,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   _SuchenPageState createState() => _SuchenPageState();
 }
@@ -115,16 +157,33 @@ class _SuchenPageState extends State<SuchenPage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyHomePage.titleStart("Suchen"),
-          SuchenPage.searchBar(),
-          SuchenPage.titleSuchenPage("Kategorien"),
-          SuchenPage.kategorienCard(),
-          SizedBox(
-            height: 12.0,
-          ),
-          SuchenPage.titleSuchenPage("Leslisten"),
+          // MyHomePage.titleStart("Suchen"),
+          // SuchenPage.searchBar(),
+          // SuchenPage.titleSuchenPage("Kategorien"),
+          // SuchenPage.kategorienCard(),
+          // SizedBox(
+          //   height: 12.0,
+          // ),
+          // SuchenPage.titleSuchenPage("Leselisten"),
+          SuchenPage.leseleistenCard(),
         ],
       ),
     );
   }
+}
+
+class MyClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = new Path();
+    path.lineTo(0.0, size.height);
+    path.lineTo(size.width, size.height - 25);
+    path.lineTo(size.width, 0.0);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

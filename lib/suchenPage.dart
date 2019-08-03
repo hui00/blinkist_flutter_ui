@@ -1,4 +1,5 @@
 import 'package:blinkist/cardModelKategorie.dart';
+import 'package:blinkist/leselistenModel.dart';
 import 'package:blinkist/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -109,49 +110,117 @@ class SuchenPage extends StatefulWidget {
       child: Card(
         color: Colors.white,
         child: SizedBox(
-          height: 260.0,
+          height: 300.0,
           width: 180.0,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    ClipPath(
-                      clipper: MyClipper(),
-                      child: Image.asset(
-                        "assets/second.jpg",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        height: 40.0,
-                        width: 80.0,
-                        child: Image.asset(
-                          "assets/iconLeselisten.png",
-                          fit: BoxFit.cover,
-                          alignment: Alignment.center,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  color: Colors.amber,
-                ),
-              ),
+              leseleistenImage(),
+              leseleistenText(),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  static Widget leseleistenImage() {
+    return Container(
+      height: 170.0,
+      width: 180.0,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            height: 166.0,
+            width: 180.0,
+            child: ClipPath(
+              clipper: MyClipper(),
+              child: Image.asset(
+                "assets/second.jpg",
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              height: 40.0,
+              width: 80.0,
+              child: Image.asset(
+                "assets/iconLeselisten.png",
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Widget leseleistenText() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8.0,
+        vertical: 0.0,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            height: 111,
+            // color: Colors.blue,
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(2.0, 4.0, 2.0, 2.0),
+                  child: RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: LeseListenModel.allModel[0].title + "\n",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextSpan(
+                          text: " \n",
+                          style: TextStyle(fontSize: 3),
+                        ),
+                        TextSpan(
+                          text: LeseListenModel.allModel[0].subtitle,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      ],
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 5,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 19,
+            // color: Colors.grey,
+            child: Text(
+              LeseListenModel.allModel[0].amountTitle.toString() + " Titles",
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -168,14 +237,14 @@ class _SuchenPageState extends State<SuchenPage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // MyHomePage.titleStart("Suchen"),
-          // SuchenPage.searchBar(),
-          // SuchenPage.titleSuchenPage("Kategorien"),
-          // SuchenPage.kategorienCard(),
-          // SizedBox(
-          //   height: 12.0,
-          // ),
-          // SuchenPage.titleSuchenPage("Leselisten"),
+          MyHomePage.titleStart("Suchen"),
+          SuchenPage.searchBar(),
+          SuchenPage.titleSuchenPage("Kategorien"),
+          SuchenPage.kategorienCard(),
+          SizedBox(
+            height: 12.0,
+          ),
+          SuchenPage.titleSuchenPage("Leselisten"),
           SuchenPage.leseleistenCard(),
         ],
       ),

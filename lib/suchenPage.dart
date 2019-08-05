@@ -107,24 +107,32 @@ class SuchenPage extends StatefulWidget {
   static Widget leseleistenCard() {
     return Padding(
       padding: const EdgeInsets.only(top: 7.0, left: 12.0),
-      child: Card(
-        color: Colors.white,
-        child: SizedBox(
-          height: 300.0,
-          width: 180.0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              leseleistenImage(),
-              leseleistenText(),
-            ],
-          ),
+      child: SizedBox(
+        height: 300.0,
+        child: ListView.builder(
+          itemCount: LeseListenModel.allModel.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              color: Colors.white,
+              child: Container(
+                width: 170.0,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    leseleistenImage(index),
+                    leseleistenText(index),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
   }
 
-  static Widget leseleistenImage() {
+  static Widget leseleistenImage(int index) {
     return Container(
       height: 170.0,
       width: 180.0,
@@ -136,7 +144,7 @@ class SuchenPage extends StatefulWidget {
             child: ClipPath(
               clipper: MyClipper(),
               child: Image.asset(
-                "assets/second.jpg",
+                LeseListenModel.allModel[index].image,
                 fit: BoxFit.cover,
               ),
             ),
@@ -161,7 +169,7 @@ class SuchenPage extends StatefulWidget {
     );
   }
 
-  static Widget leseleistenText() {
+  static Widget leseleistenText(int index) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8.0,
@@ -171,7 +179,7 @@ class SuchenPage extends StatefulWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: 111,
+            height: 100,
             // color: Colors.blue,
             child: Column(
               children: <Widget>[
@@ -184,7 +192,7 @@ class SuchenPage extends StatefulWidget {
                       ),
                       children: [
                         TextSpan(
-                          text: LeseListenModel.allModel[0].title + "\n",
+                          text: LeseListenModel.allModel[index].title + "\n",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -195,7 +203,7 @@ class SuchenPage extends StatefulWidget {
                           style: TextStyle(fontSize: 3),
                         ),
                         TextSpan(
-                          text: LeseListenModel.allModel[0].subtitle,
+                          text: LeseListenModel.allModel[index].subtitle,
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                           ),
@@ -210,10 +218,9 @@ class SuchenPage extends StatefulWidget {
             ),
           ),
           Container(
-            height: 19,
-            // color: Colors.grey,
             child: Text(
-              LeseListenModel.allModel[0].amountTitle.toString() + " Titles",
+              LeseListenModel.allModel[index].amountTitle.toString() +
+                  " Titles",
               style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w400,
@@ -246,6 +253,9 @@ class _SuchenPageState extends State<SuchenPage> {
           ),
           SuchenPage.titleSuchenPage("Leselisten"),
           SuchenPage.leseleistenCard(),
+          SizedBox(
+            height: 22.0,
+          ),
         ],
       ),
     );

@@ -290,6 +290,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  gibPage() {
+    switch (_selectedIndex) {
+      case 0:
+        {
+          return StartPage();
+        }
+        break;
+      case 1:
+        {
+          return SuchenPage();
+        }
+        break;
+      case 2:
+        {
+          return Center(
+            child: Text(
+              "Noch zumachen",
+            ),
+          );
+        }
+        break;
+      default:
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -312,17 +345,18 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SuchenPage(),
+            gibPage(),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: _onItemTapped,
         backgroundColor: Colors.black,
         iconSize: 26.0,
         elevation: 0.0,
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.greenAccent,
-        currentIndex: 0,
+        currentIndex: _selectedIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

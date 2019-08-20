@@ -1,4 +1,4 @@
-# blinkist
+# blinkist_ui
 
 A new Flutter project.
 
